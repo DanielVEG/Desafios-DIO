@@ -22,7 +22,7 @@ Cria o esquema conceitual para o contexto de oficina com base na narrativa forne
 
 ## 🛠️ Método Utilizado
 
-Elaborei um esquema conceitual através da programa  MYSQL Workbench, para controle e gerenciamento de ordem de serviços para o ramo comercial de oficiana automotiva.
-Segui a narrativa descrita assim, que simula a utilização de um sistema para o ramo mencionado anteriomente.
+Elaborei um esquema conceitual através da programa  MYSQL Workbench, para controle e gerenciamento de ordem de serviços para o ramo comercial de oficina automotiva.
+Segui a narrativa descrita assim, que simula a utilização de um sistema para o ramo mencionado anteriormente.
 
 ---
