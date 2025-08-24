@@ -8,7 +8,7 @@ Agora você irá criar um esquema conceitual do zero. A partir da narrativa forn
 ## 🎯 Objetivo
 Cria o esquema conceitual para o contexto de oficina com base na narrativa fornecida
 
-## 🎯 Narrativa
+## 📝 Narrativa
 1 - Sistema de controle e gerenciamento de execução de ordens de serviço em uma oficina mecânica
 2 - Clientes levam veículos à oficina mecânica para serem consertados ou para passarem por revisões  periódicas
 3 - Cada veículo é designado a uma equipe de mecânicos que identifica os serviços a serem executados e preenche uma OS com data de entrega.
@@ -22,6 +22,7 @@ Cria o esquema conceitual para o contexto de oficina com base na narrativa forne
 
 ## 🛠️ Método Utilizado
 
-
+Elaborei um esquema conceitual através da programa  MYSQL Workbench, para controle e gerenciamento de ordem de serviços para o ramo comercial de oficiana automotiva.
+Segui a narrativa descrita assim, que simula a utilização de um sistema para o ramo mencionado anteriomente.
 
 ---
