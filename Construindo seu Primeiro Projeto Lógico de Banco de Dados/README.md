@@ -75,7 +75,7 @@ Associação entre entregas, pedidos e clientes para controle logístico.
 
 ***
 
-## 🚀 Como Usar este Banco de Dados
+## ⭐ Como Usar este Banco de Dados
 
 1. Criar o banco:
 
@@ -93,106 +93,52 @@ USE ecommerce_desafio;
 4. Popular as tabelas com **dados reais** durante o desenvolvimento do sistema.
 5. Utilizar **consultas e transações** para manipular pedidos, pagamentos, estoques e entregas de forma integrada.
 
+## 📄 Diagrama
+
+No repositório, encontra-se o arquivo **Diagrama ERR - Ecommerce.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
+
+Este diagrama ilustra visualmente as tabelas, chaves e relacionamentos fundamentais para o funcionamento do sistema de comércio eletrônico.
+
+Para uma visualização rápida online, segue abaixo um diagrama simplificado em Mermaid.js:
+
+
+```mermaid
 erDiagram
     CLIENT {
         int id PK
         string name
-        string document
         string contact
-        string address
-        date birthDate
     }
     PRODUCT {
         int id PK
         string name
-        string description
-        enum ageRating
-        enum category
-        string size
         decimal price
     }
     SUPPLIER {
         int id PK
         string businessName
-        string cnpj
-        string contact
-        string address
     }
     SELLER {
         int id PK
         string name
-        string document
-        string contact
-        string address
     }
     ORDERS {
         int id PK
         int clientId FK
         enum status
-        string description
         decimal freightValue
-        enum paymentMethod
-        datetime orderDate
     }
     PAYMENTS {
         int id PK
         int clientId FK
-        enum method
-        enum status
         decimal totalValue
-        datetime dateCreated
-        datetime dateConfirmed
-    }
-    PAYMENTDETAILS {
-        int id PK
-        int paymentId FK
-        enum type
-        decimal value
-        string barcode
-        string cardInfo
-        int installments
-    }
-    PRODUCTSTORAGE {
-        int id PK
-        int productId FK
-        string location
-        int quantity
-    }
-    PRODUCTSUPPLIER {
-        int productId PK, FK
-        int supplierId PK, FK
-        int quantity
-    }
-    PRODUCTSELLER {
-        int productId PK, FK
-        int sellerId PK, FK
-        int quantity
-    }
-    PRODUCTORDER {
-        int productId PK, FK
-        int orderId PK, FK
-        int quantity
-        enum availabilityStatus
-    }
-    STORAGELOCATION {
-        int id PK
-        int productId FK
-        string storageLocation
     }
     SENDPROD {
         int id PK
         int clientId FK
-        string address
         string carrier
-        datetime sendDate
-        datetime deliveryDate
     }
-    SENDORDER {
-        int sendProdId PK, FK
-        int orderId PK, FK
-        int clientId PK, FK
-    }
-    
+
     CLIENT ||--o{ ORDERS : places
     CLIENT ||--o{ PAYMENTS : makes
     ORDERS ||--|{ PRODUCTORDER : contains
@@ -201,8 +147,7 @@ erDiagram
     SUPPLIER ||--o{ PRODUCTSUPPLIER : provides
     PRODUCT ||--o{ PRODUCTSELLER : sold_by
     SELLER ||--o{ PRODUCTSELLER : sells
-    PRODUCT ||--o{ PRODUCTSTORAGE : stored_in
     ORDERS ||--o| PAYMENTS : paid_by
-    SERVPROD ||--o{ SENDORDER : logistics_of
+    SENDPROD ||--o{ SENDORDER : logistics_of
     ORDERS ||--o{ SENDORDER : delivered_by
     CLIENT ||--o{ SENDORDER : receives
