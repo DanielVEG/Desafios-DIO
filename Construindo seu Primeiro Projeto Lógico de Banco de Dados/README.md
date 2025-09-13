@@ -93,14 +93,6 @@ USE ecommerce_desafio;
 4. Popular as tabelas com **dados reais** durante o desenvolvimento do sistema.
 5. Utilizar **consultas e transações** para manipular pedidos, pagamentos, estoques e entregas de forma integrada.
 
-***
-
-🔗 Esse README já está formatado para visualização clara no GitHub.
-
-***
-
-Você gostaria que eu também adicione um **diagrama do modelo relacional (MER)** feito em Mermaid.js para enriquecer ainda mais a documentação no GitHub?
-
 erDiagram
     CLIENT {
         int id PK
