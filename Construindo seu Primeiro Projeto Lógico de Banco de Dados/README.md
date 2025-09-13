@@ -93,13 +93,17 @@ USE ecommerce_desafio;
 4. Popular as tabelas com **dados reais** durante o desenvolvimento do sistema.
 5. Utilizar **consultas e transações** para manipular pedidos, pagamentos, estoques e entregas de forma integrada.
 
+## 💻 Querys para recuperação de informações do banco de dados
+
+Para consulta de informações, foi disponibilizado no repositório um arquivo SQL chamado "Querys para consulta dos recuperação dos dados inseridos". Nele, foram criadas algumas queries que recuperam informações relevantes do banco de dados. Essas consultas são fundamentais para o controle gerencial e fornecem dados estratégicos que auxiliam na tomada de decisões de marketing e em outras áreas.
+
+
 ## 📄 Diagrama
 
 No repositório, encontra-se o arquivo **Diagrama ERR - Ecommerce.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
-
 Este diagrama ilustra visualmente as tabelas, chaves e relacionamentos fundamentais para o funcionamento do sistema de comércio eletrônico.
-
 Para uma visualização rápida online, segue abaixo um diagrama simplificado em Mermaid.js:
+
 
 
 ```mermaid
