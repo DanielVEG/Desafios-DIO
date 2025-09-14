@@ -146,10 +146,15 @@ ORDER BY c.Nome, v.Modelo;
 
 ***
 
+## 📝 Observações Finais
+
+- O projeto está pronto para carregamento inicial de dados, estruturação dos vínculos e execução dos relatórios.
+- As queries podem ser adaptadas conforme regras de negócio ou necessidades específicas de análise.
+- A modelagem permite fácil expansão para novas funcionalidades ou campos.
 
 ## 📄 Diagrama
 
-No repositório, encontra-se o arquivo **Diagrama ERR - Ecommerce.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
+No repositório, encontra-se o arquivo **Diagrama ERR - BD Oficina.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
 Este diagrama ilustra visualmente as tabelas, chaves e relacionamentos fundamentais para o funcionamento do sistema de comércio eletrônico.
 Para uma visualização rápida online, segue abaixo um diagrama simplificado em Mermaid.js:
 
@@ -228,8 +233,3 @@ erDiagram
     CLIENTE ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : associado_a
 
 
-## 📝 Observações Finais
-
-- O projeto está pronto para carregamento inicial de dados, estruturação dos vínculos e execução dos relatórios.
-- As queries podem ser adaptadas conforme regras de negócio ou necessidades específicas de análise.
-- A modelagem permite fácil expansão para novas funcionalidades ou campos.
