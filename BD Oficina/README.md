@@ -34,6 +34,89 @@ O diagrama segue o modelo entidade-relacionamento estendido, representando relac
 
 ***
 
+## 📄 Diagrama
+
+No repositório, encontra-se o arquivo **Diagrama ERR - BD Oficina.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
+Este diagrama ilustra visualmente as tabelas, chaves e relacionamentos fundamentais para o funcionamento do sistema de comércio eletrônico.
+Para uma visualização rápida online, segue abaixo um diagrama simplificado em Mermaid.js:
+
+```mermaid
+erDiagram
+    CLIENTE {
+        int id PK
+        string nome
+        string documento
+        string tipo_documento
+        string endereco
+        string contato
+        date data_nascimento
+    }
+    VEICULOS {
+        int id PK
+        int clienteId FK
+        string marca
+        string modelo
+        string combustivel
+        boolean eletrico
+        int kilometragem
+        string ano_modelo
+    }
+    ORDEM_DE_SERVICO {
+        int id PK
+        enum status
+        decimal valor
+        date data_emissao
+        date data_conclusao
+    }
+    ORCAMENTO {
+        int id PK
+        int clienteId FK
+        int ordem_servicoId FK
+        string tipo_servico
+        string servico
+        string descricao
+        date data_orcamento
+        decimal valor
+    }
+    EQUIPE_DE_MECANICO {
+        int id PK
+        string nome
+        string documento
+        string codigo
+        string especialidade
+    }
+    EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO {
+        int equipeId FK
+        int orcamentoId FK
+        int clienteId FK
+    }
+    PECAS {
+        int id PK
+        string identificacao
+        string descricao
+        string categoria
+        string tipo
+        int quantidade
+        decimal valor
+    }
+    PECAS_PARA_OS {
+        int pecaId FK
+        int ordem_servicoId FK
+        int quantidade_os
+    }
+
+    CLIENTE ||--o{ VEICULOS : possui
+    CLIENTE ||--o{ ORCAMENTO : solicita
+    ORDEM_DE_SERVICO ||--o{ ORCAMENTO : contem
+    ORDEM_DE_SERVICO ||--o{ PECAS_PARA_OS : utiliza
+    PECAS ||--o{ PECAS_PARA_OS : usada_em
+    EQUIPE_DE_MECANICO ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : compoe
+    ORCAMENTO ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : avaliado_por
+    CLIENTE ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : associado_a
+
+
+***
+
 ## ⚙️ Scripts de Criação do Banco
 
 Os scripts SQL criam todas as tabelas, vínculos (FOREIGN KEY), índices, enums e configuram a estrutura para garantir integridade dos dados. O padrão utilizado segue boas práticas com nomes descritivos e tipagem adequada para cada campo (INT, VARCHAR, ENUM, DATE, DECIMAL).
@@ -151,85 +234,4 @@ ORDER BY c.Nome, v.Modelo;
 - O projeto está pronto para carregamento inicial de dados, estruturação dos vínculos e execução dos relatórios.
 - As queries podem ser adaptadas conforme regras de negócio ou necessidades específicas de análise.
 - A modelagem permite fácil expansão para novas funcionalidades ou campos.
-
-## 📄 Diagrama
-
-No repositório, encontra-se o arquivo **Diagrama ERR - BD Oficina.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
-Este diagrama ilustra visualmente as tabelas, chaves e relacionamentos fundamentais para o funcionamento do sistema de comércio eletrônico.
-Para uma visualização rápida online, segue abaixo um diagrama simplificado em Mermaid.js:
-
-```mermaid
-erDiagram
-    CLIENTE {
-        int id PK
-        string nome
-        string documento
-        string tipo_documento
-        string endereco
-        string contato
-        date data_nascimento
-    }
-    VEICULOS {
-        int id PK
-        int clienteId FK
-        string marca
-        string modelo
-        string combustivel
-        boolean eletrico
-        int kilometragem
-        string ano_modelo
-    }
-    ORDEM_DE_SERVICO {
-        int id PK
-        enum status
-        decimal valor
-        date data_emissao
-        date data_conclusao
-    }
-    ORCAMENTO {
-        int id PK
-        int clienteId FK
-        int ordem_servicoId FK
-        string tipo_servico
-        string servico
-        string descricao
-        date data_orcamento
-        decimal valor
-    }
-    EQUIPE_DE_MECANICO {
-        int id PK
-        string nome
-        string documento
-        string codigo
-        string especialidade
-    }
-    EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO {
-        int equipeId FK
-        int orcamentoId FK
-        int clienteId FK
-    }
-    PECAS {
-        int id PK
-        string identificacao
-        string descricao
-        string categoria
-        string tipo
-        int quantidade
-        decimal valor
-    }
-    PECAS_PARA_OS {
-        int pecaId FK
-        int ordem_servicoId FK
-        int quantidade_os
-    }
-
-    CLIENTE ||--o{ VEICULOS : possui
-    CLIENTE ||--o{ ORCAMENTO : solicita
-    ORDEM_DE_SERVICO ||--o{ ORCAMENTO : contem
-    ORDEM_DE_SERVICO ||--o{ PECAS_PARA_OS : utiliza
-    PECAS ||--o{ PECAS_PARA_OS : usada_em
-    EQUIPE_DE_MECANICO ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : compoe
-    ORCAMENTO ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : avaliado_por
-    CLIENTE ||--o{ EQUIPE_MECANICA_PARA_AVALIACAO_DO_ORCAMENTO : associado_a
-
 

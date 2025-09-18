@@ -32,106 +32,6 @@ O diagrama apresenta as entidades principais e seus relacionamentos com cardinal
 
 ***
 
-## 📋 Scripts de Criação do Banco de Dados
-
-Contém os scripts SQL para criação de todas as tabelas, constraints, chaves e índices necessários para o funcionamento do sistema.
-
-- Tabelas criadas com nomes descritivos e tipagem apropriada.
-- Uso de `AUTO_INCREMENT` para identificação única.
-- Enumerações para garantir padronização de dados em status e classificações.
-
-***
-
-## Consultas SQL para Relatórios
-
-Abaixo, algumas queries essenciais para análise e acompanhamento do negócio:
-
-### Relatório de Vendas por Mês
-
-```sql
-SELECT
-  YEAR(orderDate) AS Ano,
-  MONTH(orderDate) AS Mes,
-  COUNT(*) AS QtdVendas,
-  SUM(totalAmount) AS VlrTotalVendas
-FROM orders
-JOIN payments ON orders.idOrderPayment = payments.idPayment
-GROUP BY YEAR(orderDate), MONTH(orderDate)
-ORDER BY Ano DESC, Mes DESC;
-```
-
-
-***
-
-### Relatório de Clientes
-
-```sql
-SELECT
-  idClient,
-  Fname,
-  Lname,
-  Document,
-  Document_type,
-  contact,
-  Address,
-  Birthday,
-  COUNT(orders.idOrder) AS TotalPedidos,
-  SUM(payments.totalAmount) AS ValorTotalComprado
-FROM client
-LEFT JOIN orders ON orders.idOrderClient = client.idClient
-LEFT JOIN payments ON payments.idPaymentClient = client.idClient
-GROUP BY client.idClient;
-```
-
-
-***
-
-### Relatório de Entregas
-
-```sql
-SELECT
-  sp.idSend,
-  so.idSOOrder AS idPedido,
-  sp.clientName,
-  sp.Address,
-  sp.carrier,
-  sp.sendDate,
-  sp.deliveryDate,
-  orders.OrderStatus
-FROM sendProd sp
-JOIN sendOrder so ON sp.idSend = so.idSOSend
-JOIN orders ON so.idSOOrder = orders.idOrder
-ORDER BY sp.sendDate DESC;
-```
-
-
-***
-
-### Produtos Mais Vendidos
-
-```sql
-SELECT
-  p.idProduct,
-  p.Pname AS Produto,
-  SUM(po.poQuantity) AS QuantidadeVendida
-FROM productOrder po
-JOIN product p ON po.idPOproduct = p.idProduct
-GROUP BY p.idProduct, p.Pname
-ORDER BY QuantidadeVendida DESC
-LIMIT 10;
-```
-
-
-***
-
-## 📝 Considerações Finais
-
-- O sistema contempla todas as fases do comércio eletrônico, desde cadastro do cliente até entrega final.
-- As consultas são úteis para monitoramento gerencial e tomada de decisões estratégicas.
-- A modelagem e scripts foram preparados para fácil manutenção e possível expansão futura.
-
-***
-
 ## 📄 Diagrama
 
 No repositório, encontra-se o arquivo **Diagrama ERR - Ecommerce.pdf**, que exibe o esquema Entidade-Relacionamento-Relacionamento (ERR) do banco de dados criado para este desafio.
@@ -256,4 +156,105 @@ erDiagram
     CLIENT ||--o{ SENDORDER : receives
 
 
+***
+
+## 📋 Scripts de Criação do Banco de Dados
+
+Contém os scripts SQL para criação de todas as tabelas, constraints, chaves e índices necessários para o funcionamento do sistema.
+
+- Tabelas criadas com nomes descritivos e tipagem apropriada.
+- Uso de `AUTO_INCREMENT` para identificação única.
+- Enumerações para garantir padronização de dados em status e classificações.
+
+***
+
+## Consultas SQL para Relatórios
+
+Abaixo, algumas queries essenciais para análise e acompanhamento do negócio:
+
+
+***
+
+### Relatório de Vendas por Mês
+
+```sql
+SELECT 
+    YEAR(orderDate) AS Ano,
+    MONTH(orderDate) AS `Mês`,
+    COUNT(*) AS `Quantidade de Vendas`,
+    SUM(totalAmount) AS `Valor Total de Vendas`
+FROM orders
+JOIN payments ON orders.idOrderPayment = payments.idPayment
+GROUP BY Ano, `Mês`
+ORDER BY Ano DESC, `Mês` DESC;
+```
+
+
+***
+
+### Relatório de Clientes
+
+```sql
+SELECT 
+    concat(Fname,' ', Minit,' ',Lname) as 'Nome',
+    Document_type as 'Tipo de documento',
+    Document as 'Documento',
+    contact as 'Contato telefônico',
+    Address as 'Endereço',
+    Birthday as 'Data de nascimento',
+    COUNT(orders.idOrder) AS 'Total de Pedidos',
+    SUM(payments.totalAmount) AS 'Valor Total Comprado'
+FROM client
+LEFT JOIN orders ON orders.idOrderClient = client.idClient
+LEFT JOIN payments ON payments.idPaymentClient = client.idClient
+GROUP BY client.idClient;
+```
+
+
+***
+
+### Relatório de Entregas
+
+```sql
+SELECT
+    so.idSOOrder as 'Número do Pedido',
+    sp.clientName as 'Nome do cliente',
+    sp.Address as 'Endereço',
+    sp.carrier as 'Transportadora',
+    sp.sendDate as 'Data de envio',
+    sp.deliveryDate as 'Data de entrega',
+    orders.OrderStatus as 'Status da entrega'
+FROM sendProd sp
+JOIN sendOrder so ON sp.idSend = so.idSOSend
+JOIN orders ON so.idSOOrder = orders.idOrder
+ORDER BY sp.sendDate DESC;
+```
+
+
+***
+
+### Produtos Mais Vendidos
+
+```sql
+SELECT 
+    p.idProduct as 'Número do Pedido',
+    p.Pname AS Produto,
+    SUM(po.poQuantity) AS 'Quantidade Vendida'
+FROM productOrder po
+JOIN product p ON po.idPOproduct = p.idProduct
+GROUP BY p.idProduct, p.Pname
+ORDER BY 'Quantidade Vendida' DESC
+LIMIT 10;
+```
+
+
+***
+
+## 📝 Considerações Finais
+
+- O sistema contempla todas as fases do comércio eletrônico, desde cadastro do cliente até entrega final.
+- As consultas são úteis para monitoramento gerencial e tomada de decisões estratégicas.
+- A modelagem e scripts foram preparados para fácil manutenção e possível expansão futura.
+
+***
 
