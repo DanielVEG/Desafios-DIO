@@ -154,7 +154,7 @@ erDiagram
     SENDPROD ||--o{ SENDORDER : logistics_of
     ORDERS ||--o{ SENDORDER : delivered_by
     CLIENT ||--o{ SENDORDER : receives
-
+```
 
 ***
 
