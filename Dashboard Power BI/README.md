@@ -38,6 +38,7 @@ O dashboard foi desenvolvido com foco em facilitar a análise para uma visão ge
 - Mapa de Receita total por País.
 - Quantitativo de Unidades Vendida por Mês.
 
+---
 
 ## 🔧 Tecnologias Utilizadas
 
@@ -47,3 +48,8 @@ O dashboard foi desenvolvido com foco em facilitar a análise para uma visão ge
 
 ---
 
+## 💡 Considerações
+
+O painel pode ser acessado por dois documentos anexos ao diretório. Caso queira acessar pelo Power BI, abra o arquivo sample_financial.pbix, mas caso não tenha o aplicativo instalado, basta acessar o arquivo sample_financial.pdf, a visualizar os dashboards em um aplicativo visualizador de PDF de sua preferência. 
+
+---
