@@ -1,43 +1,81 @@
 .skills {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
-.skills .tools ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+/* Hard Skills */
+.tools ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.skills .tools ul li img {
-    max-width: 50px;
-    max-height: 50px;
-    margin: 0 .5rem;
+.tools ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  background: #c8f05a;
+  border: 1px solid #c8f05a;
+  border-radius: var(--radius-sm);
+  width: 70px;
+  transition: background var(--transition), border-color var(--transition);
 }
 
-.skills .personal ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
+.tools ul li:hover {
+  background: #ffffff;
+  border-color: #ffffff;
 }
 
-.skills .personal ul li {
-    margin-left: 2rem;
-    padding: .5rem
+.tools ul li img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
-@media only screen and (min-width: 768px) {
-    .skills {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+.tools ul li span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #111111;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Soft Skills */
+.personal ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.personal ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.personal ul li::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .skills {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,73 +1,143 @@
+// ── Helpers ───────────────────────────────────────
+const el = (id) => document.getElementById(id);
 
-function updateProfileInfo(profileData) {
-    const photo = document.getElementById('profile.photo')
-    photo.src = profileData.photo
-    photo.alt = profileData.name
+// ── Render functions ──────────────────────────────
+function renderHeader(data) {
+  const photo = el('profile.photo');
+  if (photo) { photo.src = data.photo; photo.alt = data.name; }
 
-    const name = document.getElementById('profile.name')
-    name.innerText = profileData.name
+  const name = el('profile.name');
+  if (name) name.textContent = data.name;
 
-    const job = document.getElementById('profile.job')
-    job.innerText = profileData.job
+  const job = el('profile.job');
+  if (job) job.textContent = `${data.job}${data.company ? ' · ' + data.company : ''}`;
 
-    const location = document.getElementById('profile.location')
-    location.innerText = profileData.location
+  const location = el('profile.location');
+  if (location) location.textContent = data.location;
 
-    const phone = document.getElementById('profile.phone')
-    phone.innerText = profileData.phone
-    phone.href = `tel:${profileData.phone}`
+  // Phone: only update text, keep WhatsApp href from HTML
+  const phone = el('profile.phone');
+  if (phone) phone.textContent = data.phone;
 
-    const email = document.getElementById('profile.email')
-    email.innerText = profileData.email
-    email.href = `mailto:${profileData.email}`
+  const email = el('profile.email');
+  if (email) {
+    email.textContent = data.email;
+    email.href = `mailto:${data.email}`;
+  }
+
+  const github = el('profile.github');
+  if (github && data.github) {
+    github.href = data.github;
+    github.textContent = 'GitHub';
+  }
 }
 
-function updateSoftSkills(profileData) {
-    const softSkills = document.getElementById('profile.skills.softSkills')
-    softSkills.innerHTML = profileData.skills.softSkills.map(skill => `<li>${skill}</li>`).join('')
+function renderSummary(data) {
+  const node = el('profile.summary');
+  if (!node || !data.summary) return;
+  const paragraphs = data.summary.split('\n\n');
+  node.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
 }
 
-function updateHardSkills(profileData) {
-    const hardSkills = document.getElementById('profile.skills.hardSkills')
-    hardSkills.innerHTML = profileData.skills.hardSkills.map(skill => `<li><img src="${skill.logo}" alt="${skill.name}" title="${skill.name}"></li>`).join('')
+function renderHardSkills(data) {
+  const list = el('profile.skills.hardSkills');
+  if (!list) return;
+  list.innerHTML = data.skills.hardSkills.map(skill => `
+    <li>
+      <img src="${skill.logo}" alt="${skill.name}" loading="lazy">
+      <span>${skill.name}</span>
+    </li>
+  `).join('');
 }
 
-function updateLanguages(profileData) {
-    const languages = document.getElementById('profile.languages')
-    languages.innerHTML = profileData.languages.map(language => `<li>${language}</li>`).join('')
+function renderSoftSkills(data) {
+  const list = el('profile.skills.softSkills');
+  if (!list) return;
+  list.innerHTML = data.skills.softSkills
+    .map(skill => `<li>${skill}</li>`)
+    .join('');
 }
 
-function updatePortfolio(profileData) {
-    const portfolio = document.getElementById('profile.portfolio')
-    portfolio.innerHTML = profileData.portfolio.map(project => {
-        return `
-            <li>
-                <h3 ${project.github ? 'class="github"' : ''}>${project.name}</h3>
-                <a href="${project.url}" target="_blank">${project.url}</a>
-            </li>
-        `
-    }).join('')
+function renderEducation(data) {
+  const list = el('profile.education');
+  if (!list || !data.education) return;
+  list.innerHTML = data.education.map(edu => `
+    <li>
+      <div class="edu-header">
+        <p class="edu-course">${edu.degree}</p>
+        <span class="edu-period">${edu.period}</span>
+      </div>
+      <p class="edu-institution">${edu.institution}</p>
+      <p class="edu-location">${edu.location}</p>
+      <div class="edu-meta">
+        ${edu.average ? `<span class="edu-badge">${edu.average}</span>` : ''}
+        ${edu.gpa ? `<span class="edu-badge">${edu.gpa}</span>` : ''}
+        ${edu.highlight ? `<span class="edu-badge edu-badge--highlight">${edu.highlight}</span>` : ''}
+      </div>
+    </li>
+  `).join('');
 }
 
-function updateProfessionalExperience(profileData) {
-    const professionalExperience = document.getElementById('profile.professionalExperience')
-    professionalExperience.innerHTML = profileData.professionalExperience.map(experience => {
-        return `
-            <li>
-                <h3 class="title">${experience.name}</h3>
-                <p class="period">${experience.period}</p>
-                <p>${experience.description}</p>
-            </li>
-        `
-    }).join('')
+function renderCertifications(data) {
+  const list = el('profile.certifications');
+  if (!list || !data.certifications) return;
+  list.innerHTML = data.certifications.map(cert => `
+    <li>
+      <span class="cert-name">${cert.name}</span>
+      <span class="cert-issuer">${cert.issuer}</span>
+    </li>
+  `).join('');
 }
 
+function renderPortfolio(data) {
+  const list = el('profile.portfolio');
+  if (!list) return;
+  const items = data.portfolio || data['Certificações e Cursos'] || [];
+  list.innerHTML = items.map(project => `
+    <li>
+      <div class="project-header">
+        <h3>${project.name}</h3>
+        ${project.github ? '<span class="project-badge">GitHub</span>' : ''}
+      </div>
+      ${project.description ? `<p>${project.description}</p>` : ''}
+      <a href="${project.url}" target="_blank" rel="noopener">${project.url}</a>
+    </li>
+  `).join('');
+}
+
+function renderExperience(data) {
+  const list = el('profile.professionalExperience');
+  if (!list) return;
+  list.innerHTML = data.professionalExperience.map(exp => `
+    <li>
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">${exp.role}</p>
+          <p class="exp-company">${exp.company}</p>
+          <p class="exp-location">${exp.location}</p>
+        </div>
+        <span class="exp-period">${exp.period}</span>
+      </div>
+      <ul class="exp-bullets">
+        ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+      </ul>
+    </li>
+  `).join('');
+}
+
+// ── Init ──────────────────────────────────────────
 (async () => {
-    const profileData = await fetchProfileData()
-    updateProfileInfo(profileData)
-    updateSoftSkills(profileData)
-    updateHardSkills(profileData)
-    updateLanguages(profileData)
-    updatePortfolio(profileData)
-    updateProfessionalExperience(profileData)
-})()
+  try {
+    const data = await fetchProfileData();
+    renderHeader(data);
+    renderSummary(data);
+    renderHardSkills(data);
+    renderSoftSkills(data);
+    renderEducation(data);
+    renderCertifications(data);
+    renderExperience(data);
+    renderPortfolio(data);
+  } catch (err) {
+    console.error('Erro ao inicializar portfólio:', err);
+  }
+})();

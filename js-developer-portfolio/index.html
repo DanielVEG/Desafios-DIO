@@ -2,111 +2,145 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifólio Daniel V Guimaraes</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel V Guimaraes — Portfólio</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/acordeon.css">
-    <link rel="stylesheet" href="assets/css/languages.css">
-    <link rel="stylesheet" href="assets/css/portfolio.css">
-    <link rel="stylesheet" href="assets/css/experience.css">
-    <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/acordeon.css">
+  <link rel="stylesheet" href="assets/css/languages.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
 </head>
 
 <body>
+  <div class="noise"></div>
 
-    <main class="main">
-        <header class="header">
-            <img src="assets/img/my-photo.png" alt="Foto de Perfil" class="photo" id="profile.photo">
+  <main class="main">
 
-            <h1 class="title">
-                Olá,<br>eu sou<span id="profile.name">Carregando...</span>
-            </h1>
+    <header class="header">
+      <div class="header__photo-wrap">
+        <img src="" alt="" class="photo" id="profile.photo">
+      </div>
 
-            <div class="information">
-                <p class="job" id="profile.job">Carregando...</p>
-                <p class="location" id="profile.location">Carregando...</p>
-                <p class="phone">
-                    <a href="tel:(31) 9 8466-3631" id="profile.phone">Carregando...</a>
-                </p>
-                <p class="email">
-                    <a href="mailto:danielvguimaraes@outlook.com" id="profile.email">carregando@mail.com</a>
-                </p>
+      <div class="header__text">
+        <p class="header__greeting">Olá, eu sou</p>
+        <h1 class="header__name" id="profile.name">—</h1>
+        <p class="header__job" id="profile.job">—</p>
+      </div>
+
+      <div class="header__contact">
+        <span class="contact-item contact-item--location" id="profile.location">—</span>
+        <a class="contact-item contact-item--phone" href="https://wa.me/5531984663631" id="profile.phone" target="_blank" rel="noopener">—</a>
+        <a class="contact-item contact-item--email" href="#" id="profile.email">—</a>
+        <a class="contact-item contact-item--linkedin" href="https://www.linkedin.com/in/danielvguimaraes/" id="profile.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="contact-item contact-item--github" href="https://github.com/DanielVEG" id="profile.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <div class="sections">
+
+      <!-- Resumo -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Resumo</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <p class="summary" id="profile.summary">—</p>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Skills</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <div class="skills">
+            <div class="tools">
+              <h3 class="section-label">Ferramentas</h3>
+              <ul id="profile.skills.hardSkills"></ul>
             </div>
-        </header>
-
-        <section class="acordeon">
-            <button class="trigger" type="button">
-                <h2>Skills</h2>
-            </button>
-
-            <div class="content">
-                <div class="skills">
-                    <section class="tools">
-                        <h3>Ferramentas:</h3>
-                        <ul id="profile.skills.hardSkills">
-                        </ul>
-                    </section>
-
-                    <section class="personal">
-                        <h3>Pessoal:</h3>
-                        <ul id="profile.skills.softSkills">
-                            <li>Carregando...</li>
-                            <li>Carregando...</li>
-                            <li>Carregando...</li>
-                        </ul>
-                    </section>
-                </div>
+            <div class="personal">
+              <h3 class="section-label">Pessoal</h3>
+              <ul id="profile.skills.softSkills"></ul>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="acordeon">
-            <button class="trigger" type="button">
-                <h2>Idiomas</h2>
-            </button>
+      <!-- Educação -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Educação</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <ul class="education" id="profile.education"></ul>
+        </div>
+      </section>
 
-            <div class="content">
-                <ul class="languages" id="profile.languages">
-                    <li>Carregando...</li>
-                </ul>
-            </div>
-        </section>
+      <!-- Certificações e Cursos -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Certificações e Cursos</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <ul class="certifications" id="profile.certifications"></ul>
+        </div>
+      </section>
 
-        <section class="acordeon">
-            <button class="trigger" type="button">
-                <h2>Portfólio</h2>
-            </button>
+      <!-- Experiência Profissional -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Experiência Profissional</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <ul class="experience" id="profile.professionalExperience"></ul>
+        </div>
+      </section>
 
-            <div class="content">
-                <ul class="portfolio" id="profile.portfolio">
-                </ul>
-            </div>
-        </section>
+      <!-- Portfólio -->
+      <section class="acordeon">
+        <button class="trigger" type="button">
+          <span>Portfólio</span>
+          <svg class="trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="content">
+          <ul class="portfolio" id="profile.portfolio"></ul>
+        </div>
+      </section>
 
-        <section class="acordeon">
-            <button class="trigger" type="button">
-                <h2>Experiência Profissional</h2>
-            </button>
+    </div>
+  </main>
 
-            <div class="content">
-                <ul class="experience" id="profile.professionalExperience">
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <script src="/assets/js/acordeon.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/acordeon.js"></script>
 </body>
 
 </html>

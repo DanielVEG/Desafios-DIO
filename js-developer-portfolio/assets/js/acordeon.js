@@ -1,14 +1,13 @@
-const acordeonTriggers = document.querySelectorAll('.acordeon .trigger')
+document.querySelectorAll('.acordeon .trigger').forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    const acordeon = trigger.parentElement;
+    const isOpen = acordeon.classList.contains('open');
 
-acordeonTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', (e) => {
-        const acordeon = trigger.parentElement
-        const isOpen = acordeon.classList.contains('open')
+    // Close all others
+    document.querySelectorAll('.acordeon.open').forEach((el) => {
+      if (el !== acordeon) el.classList.remove('open');
+    });
 
-        if (isOpen) {
-            acordeon.classList.remove('open')
-        } else {
-            acordeon.classList.add('open')
-        }
-    })
-})
+    acordeon.classList.toggle('open', !isOpen);
+  });
+});
